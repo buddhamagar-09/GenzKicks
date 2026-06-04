@@ -68,7 +68,27 @@
             </li>
           </ul>
           <div class="user_option">
-            <a href="{{ route('login') }}">
+            @if(Auth::check())
+            <span style="margin-right: 15px;">
+              Welcome, {{ Auth::user()->name }}
+            </span>
+            <a href="{{ route('dashboard') }}">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span>
+                DashBoard
+              </span>
+            </a>
+             <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form>
+            @else
+             <a href="{{ route('login') }}">
               <i class="fa fa-user" aria-hidden="true"></i>
               <span>
                 Login
@@ -80,9 +100,7 @@
                 Register
               </span>
             </a>
-            <a href="">
-              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-            </a>
+            @endif
             <form class="form-inline ">
               <button class="btn nav_search-btn" type="submit">
                 <i class="fa fa-search" aria-hidden="true"></i>
