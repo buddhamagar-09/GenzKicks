@@ -17,10 +17,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+//Admin routes
 Route::middleware('admin')->group(function () {
     // Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
+
+//Frontend routes
+Route::get('/contact', [UserController::class, 'contact'])->name('contact');
+Route::get('/shop', [UserController::class, 'shop'])->name('shop');
+Route::get('/testimonial', [UserController::class, 'testimonial'])->name('testimonial');
+Route::get('/why', [UserController::class, 'why'])->name('why');
 
 
 require __DIR__ . '/auth.php';
