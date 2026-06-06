@@ -34,7 +34,7 @@
     <!-- header section strats -->
     <header class="header_section">
       <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ route('dashboard') }}">
           <span>
             Giftos
           </span>
@@ -46,25 +46,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav  ">
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ route('dashboard') }}">
+                Home <span class="sr-only">(current)</span>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="shop.html">
+              <a class="nav-link" href="{{ route('shop') }}">
                 Shop
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="why.html">
+              <a class="nav-link" href="{{ route('why') }}">
                 Why Us
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="testimonial.html">
+              <a class="nav-link" href="{{ route('testimonial') }}">
                 Testimonial
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact Us</a>
+              <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
             </li>
           </ul>
           <div class="user_option">
@@ -72,12 +74,7 @@
             <span style="margin-right: 15px;">
               Welcome, {{ Auth::user()->name }}
             </span>
-            <a href="{{ route('dashboard') }}">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <span>
-                DashBoard
-              </span>
-            </a>
+          
              <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
