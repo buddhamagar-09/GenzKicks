@@ -19,7 +19,8 @@ Route::middleware('auth')->group(function () {
 });
 //Admin routes
 Route::middleware('admin')->group(function () {
-    // Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/addproduct',[AdminController::class,'add_product']) -> name('add.products');
+    Route::post('/productAdd',[AdminController::class,'product_Add']) -> name('admin_add_products');
 });
 
 //Frontend routes
