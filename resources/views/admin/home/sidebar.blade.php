@@ -13,9 +13,9 @@
       <ul class="list-unstyled">
         <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
-              class="icon-windows"></i>Example dropdown </a>
+              class="icon-windows"></i>Products</a>
           <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-            <li><a href="#">Page</a></li>
+            <li><a href="{{ route('add.products') }}">Add Products</a></li>
             <li><a href="#">Page</a></li>
             <li><a href="#">Page</a></li>
           </ul>
@@ -23,12 +23,7 @@
       </ul>
     </nav>
     <!-- Sidebar Navigation end-->
-    <div class="page-content">
-      <div class="page-header">
-        <div class="container-fluid">
-          <h2 class="h5 no-margin-bottom">Dashboard</h2>
-        </div>
-      </div>
+  
     
 
     
