@@ -19,7 +19,7 @@
 
             <!-- Product Name -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">
+                <label class="block text-sm font-medium text-white mb-2">
                     Product Name
                 </label>
                 <input type="text" name="product_name"
@@ -29,7 +29,7 @@
 
             <!-- Description -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">
+                <label class="block text-sm font-medium text-white mb-2">
                     Description
                 </label>
                 <textarea name="product_description" rows="5"
@@ -40,7 +40,7 @@
             <!-- Price & Quantity -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                    <label class="block text-sm font-medium text-white mb-2">
                         Price
                     </label>
                     <input type="number" name="product_price"
@@ -49,7 +49,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                    <label class="block text-sm font-medium text-white mb-2">
                         Quantity
                     </label>
                     <input type="number" name="product_quantity"
@@ -60,7 +60,7 @@
 
             <!-- Image Upload -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">
+                <label class="block text-sm font-medium text-white mb-2">
                     Product Image
                 </label>
 
