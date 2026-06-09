@@ -2,21 +2,6 @@
 
 <head>
     @include('admin.home.css')
-    <style>
-        .div_deg {
-            padding: 15px;
-        }
-
-        label {
-            display: inline-block;
-            width: 150px;
-        }
-
-        input {
-            width: 500px;
-
-        }
-    </style>
 </head>
 
 <body>
@@ -28,36 +13,70 @@
                 <h2 class="h5 no-margin-bottom">Dashboard</h2>
             </div>
         </div>
-        <form action="{{ route('admin_add_products') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin_add_products') }}" method="POST" enctype="multipart/form-data"
+            class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md space-y-6">
             @csrf
 
-            <div class="div_deg">
-                <label>Product Name</label>
-                <input type="text" name="product_name">
+            <!-- Product Name -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Product Name
+                </label>
+                <input type="text" name="product_name"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Enter product name">
             </div>
 
-            <div class="div_deg">
-                <label>Description</label>
-                <textarea style="width: 500px; height: 100px;" name="product_description"></textarea>
+            <!-- Description -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Description
+                </label>
+                <textarea name="product_description" rows="5"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Enter product description"></textarea>
             </div>
 
-            <div class="div_deg">
-                <label>Price</label>
-                <input type="number" name="product_price">
+            <!-- Price & Quantity -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Price
+                    </label>
+                    <input type="number" name="product_price"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="0.00">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Quantity
+                    </label>
+                    <input type="number" name="product_quantity"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="0">
+                </div>
             </div>
 
-            <div class="div_deg">
-                <label>Quantity</label>
-                <input type="number" name="product_quantity">
+            <!-- Image Upload -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Product Image
+                </label>
+
+                <input type="file" name="product_image" class="block w-full text-sm text-gray-500
+                   file:mr-4 file:py-2 file:px-4
+                   file:rounded-lg file:border-0
+                   file:bg-indigo-50 file:text-indigo-700
+                   hover:file:bg-indigo-100">
             </div>
 
-            <div class="div_deg">
-                <label>Image</label>
-                <input type="file" name="product_image">
-            </div>
-
-            <div class="div_deg">
-                <input type="submit" value="Add Product" class="btn btn-success">
+            <!-- Submit Button -->
+            <div>
+                <button type="submit"
+                    class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition duration-200">
+                    Add Product
+                </button>
             </div>
         </form>
         @include('admin.home.footer')
