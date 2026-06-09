@@ -18,14 +18,28 @@ class AdminController extends Controller
         $product->description = $request->product_description;
         $product->Price = $request->product_price;
         $product->quantity = $request->product_quantity;
-        
+
         //for image
         //bag.jpg = 67836635762375.jpg
         $image = $request->product_image;
-        $image_name = uniqid().'.'.$image->getClientOriginalExtension();
-        $image->move(public_path('image/product'),$image_name);
+        $image_name = uniqid() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('image/product'), $image_name);
         $product->image = $image_name;
         $product->save();
+        return redirect()->back();
+    }
+
+    public function view_products()
+    {
+        $product = Product::all();
+        return view('admin.products.viewproduct', ['productlists' => $product]);
+    }
+
+
+    public function delete_products(string $id)
+    {
+        $product = Product::find($id);
+        $product->delete();
         return redirect()->back();
     }
 }
