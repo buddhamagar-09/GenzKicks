@@ -32,8 +32,6 @@
                 </thead>
                 <tbody>
                     @foreach ($productlists as $list)
-
-
                         <tr>
                             <td>{{ $list->id }}</td>
                             <td>{{ $list->name }}</td>
@@ -45,7 +43,6 @@
                             </td>
                             <td>
                                 <a href="{{ route('edit.product', $list->id) }}">Edit</a>
-
                                 <a href="{{ route('delete.product', $list->id) }}">Delete</a>
                             </td>
                         </tr>
