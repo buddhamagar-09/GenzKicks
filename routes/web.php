@@ -33,6 +33,6 @@ Route::get('/shop', [UserController::class, 'shop'])->name('shop');
 Route::get('/testimonial', [UserController::class, 'testimonial'])->name('testimonial');
 Route::get('/why', [UserController::class, 'why'])->name('why');
 Route::get('/productdetails/{id}', [UserController::class, 'product_detail'])->name('product.detail');
-
+Route::get('/addtocart/{id}',[UserController::class,'addtocart'])->name('add_to_cart');
 
 require __DIR__ . '/auth.php';
