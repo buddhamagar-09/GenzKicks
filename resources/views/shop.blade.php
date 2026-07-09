@@ -1,5 +1,5 @@
 @php
-  $product = App\Models\Product::all();
+  $product = App\Models\Product::get();
 @endphp
 <!DOCTYPE html>
 <html>
