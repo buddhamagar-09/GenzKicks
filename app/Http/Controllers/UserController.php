@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\cart;
 
 class UserController extends Controller
 {
@@ -36,5 +37,25 @@ class UserController extends Controller
     {
         $product = Product::find($id);
         return view('productdetails', ['pdetail' => $product]);
+    }
+
+    public function addtocart(Request $request, string $id)
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+
+        $cart = cart::where('user_id', Auth::id())->where('product_id', $id)->first();
+        if ($cart) {
+            $cart->quantity += $request->quantity;
+            $cart->save();
+        } else {
+            $cart = new cart();
+            $cart->user_id = Auth::id();
+            $cart->product_id = $id;
+            $cart->quantity = $request->quantity;
+            $cart->save();
+        }
+        return redirect()->back()->with('Success', 'Product added to cart successfully!');
     }
 }
