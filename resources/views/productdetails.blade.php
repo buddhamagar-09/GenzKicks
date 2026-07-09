@@ -82,7 +82,7 @@
                                 @csrf
 
                                 <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
-                                            this.closest('form').submit();">
+                                                this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-responsive-nav-link>
                             </form>
@@ -119,43 +119,54 @@
         <div class="container">
 
 
-                <div class="row">
-                    <!-- Product Image -->
-                    <div class="col-md-6">
-                        <div
-                            style="width:70%; height:400px; overflow:hidden; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
-                            <img height="150" width="150" src="{{ asset('image/product/' . $pdetail->image) }}" alt="" style="width:100%; height:100%; object-fit:cover;" />
-                        </div>
-                    </div>
-
-                    <!-- Product Info -->
-                    <div class="col-md-6">
-                        <div style="padding:20px;">
-                            <h2 style="font-weight:600; font-size:28px; margin-bottom:10px; color:#222;">
-                                {{ $pdetail->name }}
-                            </h2>
-                            <p style="font-size:22px; color:#007bff; font-weight:bold; margin:10px 0;">
-                                ${{ $pdetail->Price }}
-                            </p>
-
-                            <h4 style="margin-top:20px; font-size:18px; color:#333;">Description</h4>
-                            <p style="color:#555; line-height:1.6; font-size:15px;">
-                                {{ $pdetail->description }}
-                            </p>
-
-                            <!-- Quantity + Button -->
-                            <div style="margin-top:25px; display:flex; align-items:center; gap:15px;">
-
-                                <a href=""> <button
-                                        style="background:#0d6efd; color:white; border:none; padding:12px 30px; font-size:16px; border-radius:6px; cursor:pointer; transition:0.3s;">
-                                        Add to Cart
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
+            <div class="row">
+                <!-- Product Image -->
+                <div class="col-md-6">
+                    <div
+                        style="width:70%; height:400px; overflow:hidden; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+                        <img height="150" width="150" src="{{ asset('image/product/' . $pdetail->image) }}" alt=""
+                            style="width:100%; height:100%; object-fit:cover;" />
                     </div>
                 </div>
-           
+
+                <!-- Product Info -->
+                <div class="col-md-6">
+                    <div style="padding:20px;">
+                        <h2 style="font-weight:600; font-size:28px; margin-bottom:10px; color:#222;">
+                            {{ $pdetail->name }}
+                        </h2>
+                        <p style="font-size:22px; color:#007bff; font-weight:bold; margin:10px 0;">
+                            ${{ $pdetail->Price }}
+                        </p>
+
+                        <h4 style="margin-top:20px; font-size:18px; color:#333;">Description</h4>
+                        <p style="color:#555; line-height:1.6; font-size:15px;">
+                            {{ $pdetail->description }}
+                        </p>
+
+                        <!-- Quantity + Button -->
+                        <form action="{{ route('add_to_cart', $pdetail->id) }}" method="GET">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label>Quantity</label>
+
+                                <input type="number" name="quantity" value="1" min="1"
+                                    max="{{ $pdetail->quantity }}" class="form-control" style="width:120px;">
+                            </div>
+
+                            <div style="margin-top:25px;">
+                                <button type="submit"
+                                    style="background:#0d6efd; color:white; border:none; padding:12px 30px; font-size:16px; border-radius:6px;cursor:pointer;">
+                                    Add to Cart
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
