@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-});
+})->name('home');
 
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/cart', [UserController::class, 'cartproduct'])->middleware(['auth', 'verified'])->name('cart_table');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,5 +35,8 @@ Route::get('/testimonial', [UserController::class, 'testimonial'])->name('testim
 Route::get('/why', [UserController::class, 'why'])->name('why');
 Route::get('/productdetails/{id}', [UserController::class, 'product_detail'])->name('product.detail');
 Route::get('/addtocart/{id}',[UserController::class,'addtocart'])->name('add_to_cart');
+Route::get('/removecart/{id}',[UserController::class,'removecart'])->name('delete_cart_item');
+Route::post('/updatecart/{id}',[UserController::class, 'updatecart'])->name('update_cart');
+
 
 require __DIR__ . '/auth.php';
