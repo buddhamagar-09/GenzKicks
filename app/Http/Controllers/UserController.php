@@ -58,4 +58,41 @@ class UserController extends Controller
         }
         return redirect()->back()->with('Success', 'Product added to cart successfully!');
     }
+
+    public function cartproduct()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+        $cart = cart::join('products', 'carts.product_id', '=', 'products.id')
+            ->where('carts.user_id', Auth::id())
+            ->select(
+                'carts.id',
+                'carts.quantity',
+                'products.name',
+                'products.price',
+                'products.image'
+            )
+            ->get();
+
+        return view('viewcart', ['cartitems' => $cart]);
+    }
+
+    public function removecart(string $id)
+    {
+        cart::destroy($id);
+        return redirect()->back();
+    }
+
+    public function updatecart(Request $request, string $id)
+    {
+        $cart = cart::find($id);
+        if ($cart) {
+            $cart->quantity = $request->update_quantity;
+            $cart->save();
+            return redirect()->back()->with('success', 'Cart updated successfully!');
+        } else {
+            return redirect()->back()->with('error', 'Cart item not found!');
+        }
+    }
 }
