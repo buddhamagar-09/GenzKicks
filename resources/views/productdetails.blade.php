@@ -1,3 +1,14 @@
+
+@php 
+    use App\Models\cart;
+    use Illuminate\Support\Facades\Auth;
+    $total_products = 0;
+    if (Auth::check()) {
+        $total_products = cart::where('user_id', Auth::id())->count();
+    }
+    // select all row in the Cart and display it in the cart icon in the header section
+
+@endphp
 <!DOCTYPE html>
 <html>
 
@@ -31,11 +42,11 @@
 </head>
 
 <body>
-    <div class="hero_area">
+ <div class="hero_area">
         <!-- header section strats -->
         <header class="header_section">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="{{ route('dashboard') }}">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     <span>
                         Giftos
                     </span>
@@ -49,7 +60,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  ">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('dashboard') }}">
+                            <a class="nav-link" href="{{ route('home') }}">
                                 Home <span class="sr-only">(current)</span>
                             </a>
                         </li>
@@ -77,15 +88,16 @@
                             <span style="margin-right: 15px;">
                                 Welcome, {{ Auth::user()->name }}
                             </span>
+                            <span style="margin-right: 15px;">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
 
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
+                                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Log Out') }}
-                                </x-responsive-nav-link>
-                            </form>
+                                        {{ __('Log Out') }}
+                                    </x-responsive-nav-link>
+                                </form>
+                            </span>
                         @else
                             <a href="{{ route('login') }}">
                                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -100,6 +112,12 @@
                                 </span>
                             </a>
                         @endif
+                        <a href="{{ route('cart_table') }}" class="">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span>
+                                ({{ $total_products }})
+                            </span>
+                        </a>
                         <form class="form-inline ">
                             <button class="btn nav_search-btn" type="submit">
                                 <i class="fa fa-search" aria-hidden="true"></i>
@@ -110,9 +128,9 @@
             </nav>
         </header>
         <!-- end header section -->
-
+        <!-- slider section -->
+        <!-- end slider section -->
     </div>
-    <!-- end hero area -->
 
     <!-- product_detail section -->
     <section class="product_detail_section layout_padding">

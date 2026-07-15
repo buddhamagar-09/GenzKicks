@@ -1,5 +1,14 @@
 @php 
+use App\Models\cart;
+use Illuminate\Support\Facades\Auth;
 $products = App\Models\Product::latest()->take(4)->get();
+$total_products = 0;
+if(Auth::check())
+{
+$total_products = cart::where('user_id', Auth::id())->count();
+}
+// select all row in the Cart and display it in the cart icon in the header section
+
 @endphp
 
 <!DOCTYPE html>
@@ -38,7 +47,7 @@ $products = App\Models\Product::latest()->take(4)->get();
     <!-- header section strats -->
     <header class="header_section">
       <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="{{ route('dashboard') }}">
+        <a class="navbar-brand" href="{{ route('home') }}">
           <span>
             Giftos
           </span>
@@ -50,7 +59,7 @@ $products = App\Models\Product::latest()->take(4)->get();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav  ">
             <li class="nav-item active">
-              <a class="nav-link" href="{{ route('dashboard') }}">
+              <a class="nav-link" href="{{ route('home') }}">
                 Home <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -78,7 +87,7 @@ $products = App\Models\Product::latest()->take(4)->get();
             <span style="margin-right: 15px;">
               Welcome, {{ Auth::user()->name }}
             </span>
-          
+            <span style="margin-right: 15px;">
              <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
@@ -88,6 +97,7 @@ $products = App\Models\Product::latest()->take(4)->get();
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
+                </span> 
             @else
              <a href="{{ route('login') }}">
               <i class="fa fa-user" aria-hidden="true"></i>
@@ -102,6 +112,12 @@ $products = App\Models\Product::latest()->take(4)->get();
               </span>
             </a>
             @endif
+            <a href="{{ route('cart_table') }}" class="">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <span>
+                 ({{ $total_products }})
+              </span>
+            </a>
             <form class="form-inline ">
               <button class="btn nav_search-btn" type="submit">
                 <i class="fa fa-search" aria-hidden="true"></i>
