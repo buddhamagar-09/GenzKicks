@@ -190,7 +190,7 @@
 
                 <tr>
                     <td colspan="6" class="text-right">
-                        <a href="" class="btn btn-success">Proceed to Checkout</a>
+                        <a href="{{ route('checkout') }}" class="btn btn-success">Proceed to Checkout</a>
                     </td>
                 </tr>
 
