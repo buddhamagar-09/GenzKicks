@@ -50,21 +50,20 @@ class AdminController extends Controller
 
     public function update_products(Request $request, string $id)
     {
-    $product = Product::find($id);
-    $product->name = $request->product_name;
-    $product->description = $request->product_description;
-    $product->Price = $request->product_price;
-    $product->quantity = $request->product_quantity;
-    
+        $product = Product::find($id);
+        $product->name = $request->product_name;
+        $product->description = $request->product_description;
+        $product->Price = $request->product_price;
+        $product->quantity = $request->product_quantity;
 
-    if($request->hasFile('product_image') )
-        {
-             $image = $request->product_image;
-        $image_name = uniqid() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('image/product'), $image_name);
-        $product->image = $image_name;
+
+        if ($request->hasFile('product_image')) {
+            $image = $request->product_image;
+            $image_name = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('image/product'), $image_name);
+            $product->image = $image_name;
         }
         $product->save();
-        return redirect()->route('view.products');  
+        return redirect()->route('view.products');
     }
 }
