@@ -1,123 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | GenzKicks</title>
 
-<x-guest-layout>
-    <div class="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+    <style>
+        body{
+            background: #f5f7fa;
+        }
 
-            <!-- Brand -->
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-800">
-                    GenzKicks
-                </h1>
+        .login-card{
+            max-width: 450px;
+            width: 100%;
+            border: none;
+            border-radius: 15px;
+        }
 
-                <p class="mt-2 text-sm text-gray-500">
-                    Sign in to access your account
-                </p>
-            </div>
+        .brand-title{
+            font-size: 2rem;
+            font-weight: bold;
+            color: #212529;
+        }
 
-            <!-- Form -->
-            <form method="POST" action="{{ route('login') }}" class="space-y-5">
-                @csrf
+        .login-btn{
+            background: linear-gradient(90deg,#4f46e5,#ec4899);
+            border: none;
+        }
 
-                <!-- Email -->
-                <div>
-                    <label
-                        for="email"
-                        class="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                        Email Address
-                    </label>
+        .login-btn:hover{
+            background: linear-gradient(90deg,#4338ca,#db2777);
+        }
 
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value="{{ old('email') }}"
-                        required
-                        autocomplete="username"
-                        placeholder="Enter your email"
-                        class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
-                    >
+        .form-control{
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
 
-                    @error('email')
-                        <p class="text-sm text-red-600 mt-1">
-                            {{ $message }}
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card shadow-lg login-card">
+                <div class="card-body p-5">
+
+                    <!-- Brand -->
+                    <div class="text-center mb-4">
+                        <h2 class="brand-title">GenzKicks</h2>
+                        <p class="text-muted">
+                            Sign in to access your account
                         </p>
-                    @enderror
-                </div>
+                    </div>
 
-                <!-- Password -->
-                <div>
-                    <label
-                        for="password"
-                        class="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                        Password
-                    </label>
+                    <!-- Login Form -->
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
 
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        required
-                        autocomplete="current-password"
-                        placeholder="Enter your password"
-                        class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
-                    >
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Email Address
+                            </label>
 
-                    @error('password')
-                        <p class="text-sm text-red-600 mt-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
+                            <input
+                                type="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                class="form-control"
+                                placeholder="Enter your email"
+                                required
+                                autocomplete="username">
 
-                <!-- Remember + Forgot -->
-                <div class="flex items-center justify-between">
-                    <label class="flex items-center text-sm text-gray-600">
-                        <input
-                            type="checkbox"
-                            name="remember"
-                            class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            {{ old('remember') ? 'checked' : '' }}
-                        >
-                        <span class="ml-2">Remember me</span>
-                    </label>
+                            @error('email')
+                                <div class="text-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
-                    @if (Route::has('password.request'))
-                        <a
-                            href="{{ route('password.request') }}"
-                            class="text-sm text-indigo-600 hover:underline"
-                        >
-                            Forgot password?
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                name="password"
+                                class="form-control"
+                                placeholder="Enter your password"
+                                required
+                                autocomplete="current-password">
+
+                            @error('password')
+                                <div class="text-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <!-- Remember & Forgot -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    name="remember"
+                                    id="remember"
+                                    {{ old('remember') ? 'checked' : '' }}>
+
+                                <label class="form-check-label" for="remember">
+                                    Remember me
+                                </label>
+                            </div>
+
+                            @if(Route::has('password.request'))
+                                <a href="{{ route('password.request') }}" class="text-decoration-none">
+                                    Forgot Password?
+                                </a>
+                            @endif
+
+                        </div>
+
+                        <!-- Button -->
+                        <button class="btn login-btn text-white w-100 py-2">
+                            Sign In
+                        </button>
+
+                    </form>
+
+                    <hr class="my-4">
+
+                    <p class="text-center mb-0">
+                        Don't have an account?
+                        <a href="{{ route('register') }}" class="text-decoration-none fw-semibold">
+                            Create one
                         </a>
-                    @endif
+                    </p>
+
                 </div>
-
-                <!-- Login Button -->
-                <button
-                    type="submit"
-                    class="w-full bg-gradient-to-r from-indigo-600 to-pink-500 text-white py-3 rounded-lg font-medium hover:from-indigo-700 hover:to-pink-600 transition"
-                >
-                    Sign In
-                </button>
-            </form>
-
-            <!-- Divider -->
-            <div class="border-t border-gray-200 mt-8 pt-6">
-                <p class="text-center text-sm text-gray-500">
-                    Don't have an account?
-                    <a
-                        href="{{ route('register') }}"
-                        class="text-indigo-600 font-medium hover:underline"
-                    >
-                        Create one
-                    </a>
-                </p>
             </div>
 
         </div>
 
     </div>
-</x-guest-layout>
+</div>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
