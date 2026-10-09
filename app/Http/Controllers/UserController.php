@@ -86,13 +86,23 @@ class UserController extends Controller
 
     public function updatecart(Request $request, string $id)
     {
-        $cart = cart::find($id);
-        if ($cart) {
-            $cart->quantity = $request->update_quantity;
-            $cart->save();
-            return redirect()->back()->with('success', 'Cart updated successfully!');
-        } else {
-            return redirect()->back()->with('error', 'Cart item not found!');
+        $cart = cart::where('id', $id)->where('user_id', Auth::id())->first();
+
+        if (!$cart) {
+            return redirect()->back()->with('error', 'cart item not found');
         }
+        $cart->quantity = $request->update_quantity;
+        $cart->save();
+        return redirect()->back()->with('success', 'cart updated successfully');
+    }
+
+    public function checkoutcart()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+        $cart = cart::where('user_id', Auth::id())->get();
+
+        return view('checkout', compact('cart'));
     }
 }

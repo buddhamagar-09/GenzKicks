@@ -37,6 +37,7 @@ Route::get('/productdetails/{id}', [UserController::class, 'product_detail'])->n
 Route::get('/addtocart/{id}',[UserController::class,'addtocart'])->name('add_to_cart');
 Route::get('/removecart/{id}',[UserController::class,'removecart'])->name('delete_cart_item');
 Route::post('/updatecart/{id}',[UserController::class, 'updatecart'])->name('update_cart');
+Route::get('/checkoutcart}',[UserController::class, 'checkoutcart'])->name('checkout');
 
 
 require __DIR__ . '/auth.php';
