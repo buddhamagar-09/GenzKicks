@@ -2,3 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Tailwind ships a `.collapse { visibility: collapse }` utility (for collapsing
+ * table groups) which collides with Bootstrap's `.collapse` menu class used by
+ * the admin sidebar dropdowns and navbar-collapse.
+ *
+ * Bootstrap's classes go `collapse` -> `collapsing` -> `collapse show`; the
+ * utility does not match while `collapsing`, so the menu flashes open during the
+ * animation and is hidden again the moment `collapse show` is applied.
+ *
+ * Neutralise the utility here (it is emitted after `@tailwind utilities`, so it
+ * wins on source order). Closed menus are still hidden by Bootstrap's own
+ * `.collapse:not(.show) { display: none }`.
+ */
+.collapse {
+    visibility: visible;
+}
