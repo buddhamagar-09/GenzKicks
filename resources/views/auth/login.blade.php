@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
 
     <style>
         body{
-            background: #f5f7fa;
+            background: #E8ECF1;
         }
 
         .login-card{
@@ -23,16 +23,16 @@
         .brand-title{
             font-size: 2rem;
             font-weight: bold;
-            color: #212529;
+            color: #3D007A;
         }
 
         .login-btn{
-            background: linear-gradient(90deg,#4f46e5,#ec4899);
+            background: linear-gradient(90deg,#3D007A,#5B21B6);
             border: none;
         }
 
         .login-btn:hover{
-            background: linear-gradient(90deg,#4338ca,#db2777);
+            background: linear-gradient(90deg,#2C0059,#3D007A);
         }
 
         .form-control{

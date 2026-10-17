@@ -26,7 +26,7 @@
   <link rel="shortcut icon" href="frontend/images/favicon.png" type="image/x-icon">
 
   <title>
-    Giftos
+    GenzKicks
   </title>
 
   <!-- slider stylesheet -->
@@ -49,7 +49,7 @@
             <nav class="navbar navbar-expand-lg custom_nav-container ">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <span>
-                        Giftos
+                        GenzKicks
                     </span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -60,63 +60,53 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  ">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('home') }}">
-                                Home <span class="sr-only">(current)</span>
-                            </a>
+                        <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('shop') }}">
-                                Shop
-                            </a>
+                        <li class="nav-item {{ request()->routeIs('shop', 'product.detail') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('shop') }}">Shop</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('why') }}">
-                                Why Us
-                            </a>
+                        <li class="nav-item {{ request()->routeIs('why') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('why') }}">Why Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('testimonial') }}">
-                                Testimonial
-                            </a>
+                        <li class="nav-item {{ request()->routeIs('testimonial') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('testimonial') }}">Testimonial</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
                         </li>
                     </ul>
                     <div class="user_option">
                         @if(Auth::check())
-                            <span style="margin-right: 15px;">
-                                Welcome, {{ Auth::user()->name }}
+                            <span class="welcome-pill">
+                                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                Welcome, <strong>{{ Auth::user()->name }}</strong>
                             </span>
-                            <span style="margin-right: 15px;">
+                            <span class="logout-slot">
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
 
-                                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </x-responsive-nav-link>
+                                    <button type="submit" class="chip-link"><i class="fa fa-sign-out" aria-hidden="true"></i><span>Log Out</span></button>
                                 </form>
                             </span>
                         @else
-                            <a href="{{ route('login') }}">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                            <a href="{{ route('login') }}" class="chip-link">
+                                <i class="fa fa-sign-in" aria-hidden="true"></i>
                                 <span>
                                     Login
                                 </span>
                             </a>
-                            <a href="{{ route('register') }}">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                            <a href="{{ route('register') }}" class="chip-link">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 <span>
                                     Register
                                 </span>
                             </a>
                         @endif
-                        <a href="{{ route('cart_table') }}" class="">
+                        <a href="{{ route('cart_table') }}" class="chip-link cart-link">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span>
-                                ({{ $total_products }})
+                            <span class="cart-badge">
+                                {{ $total_products }}
                             </span>
                         </a>
                         <form class="form-inline ">

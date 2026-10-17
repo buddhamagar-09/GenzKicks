@@ -1,1 +1,522 @@
-/* your styles go here */
+/* =============================================================
+   GenzKicks Admin theme
+   Palette
+     Toxic Violet  #3D007A   (primary)
+     SoftChrome    #E8ECF1   (light surface)
+   Supporting shades (derived from Toxic Violet)
+     violet-dark   #2C0059
+     violet-light  #5B21B6
+     violet-soft   #7C3AED
+   ============================================================= */
+
+:root {
+  --gz-violet: #3D007A;
+  --gz-violet-dark: #2C0059;
+  --gz-violet-light: #5B21B6;
+  --gz-violet-soft: #7C3AED;
+  --gz-chrome: #E8ECF1;
+  --gz-chrome-dark: #D3DAE3;
+  --gz-surface: #FFFFFF;
+  --gz-ink: #1F2430;
+  --gz-muted: #6B7280;
+}
+
+/* -------------------------------------------------------------
+   Base
+------------------------------------------------------------- */
+body {
+  background-color: var(--gz-chrome);
+  color: var(--gz-ink);
+}
+
+a {
+  color: var(--gz-violet);
+}
+
+a:focus,
+a:hover {
+  color: var(--gz-violet-dark);
+}
+
+.page-content {
+  background: var(--gz-chrome);
+  color: var(--gz-ink);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: var(--gz-ink);
+}
+
+.text-gray {
+  color: var(--gz-muted) !important;
+}
+
+.text-gray-dark {
+  color: var(--gz-ink) !important;
+}
+
+/* -------------------------------------------------------------
+   Top navbar
+------------------------------------------------------------- */
+nav.navbar {
+  background: var(--gz-violet);
+  color: var(--gz-chrome);
+  border-bottom: 1px solid var(--gz-violet-dark);
+}
+
+nav.navbar a {
+  color: inherit;
+}
+
+nav.navbar .brand-text {
+  color: #FFFFFF;
+}
+
+nav.navbar .text-primary,
+nav.navbar .brand-text .text-primary {
+  color: #C4B5FD !important;
+}
+
+nav.navbar a.nav-link .badge {
+  background: var(--gz-violet-light) !important;
+}
+
+nav.navbar .sidebar-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+nav.navbar .sidebar-toggle:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+nav.navbar .search-inner {
+  background: rgba(44, 0, 89, 0.97);
+  color: var(--gz-chrome);
+}
+
+nav.navbar .search-inner .close-btn {
+  color: #FFFFFF;
+}
+
+nav.navbar .search-inner input {
+  color: #FFFFFF;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+nav.navbar .search-inner input::-moz-placeholder {
+  color: rgba(232, 236, 241, 0.6);
+}
+
+nav.navbar .search-inner input::-webkit-input-placeholder {
+  color: rgba(232, 236, 241, 0.6);
+}
+
+nav.navbar .search-inner input:-ms-input-placeholder {
+  color: rgba(232, 236, 241, 0.6);
+}
+
+nav.navbar .search-inner input::placeholder {
+  color: rgba(232, 236, 241, 0.6);
+}
+
+nav.navbar .search-inner .submit {
+  color: var(--gz-chrome);
+}
+
+/* Logout button living in the navbar */
+.right-menu .logout a {
+  display: inline-block;
+  padding: 6px 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF !important;
+  font-size: 0.85rem;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.4;
+}
+
+.right-menu .logout a:hover,
+.right-menu .logout a:focus {
+  background: #FFFFFF;
+  color: var(--gz-violet) !important;
+}
+
+/* -------------------------------------------------------------
+   Sidebar
+------------------------------------------------------------- */
+nav#sidebar {
+  background: var(--gz-violet-dark);
+  color: #D8CFEA;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+nav#sidebar .sidebar-header h1 {
+  color: #FFFFFF;
+}
+
+nav#sidebar .sidebar-header p {
+  color: #C4B5FD;
+}
+
+nav#sidebar span.heading {
+  color: #B9A6E0;
+}
+
+nav#sidebar .avatar {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+nav#sidebar a[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+nav#sidebar li a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+nav#sidebar li a:hover i {
+  color: #C4B5FD;
+}
+
+nav#sidebar li a i {
+  border-right-color: rgba(255, 255, 255, 0.18);
+}
+
+nav#sidebar li li a {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+nav#sidebar li li a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+nav#sidebar li li a:hover i {
+  color: #C4B5FD;
+}
+
+nav#sidebar li.active::before {
+  background: var(--gz-violet-soft);
+}
+
+nav#sidebar li.active > a {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+nav#sidebar li.active i {
+  color: #FFFFFF;
+}
+
+nav#sidebar li li.active > a {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+/* -------------------------------------------------------------
+   Page header / breadcrumb
+------------------------------------------------------------- */
+.page-header {
+  background: var(--gz-surface);
+  color: var(--gz-muted);
+  border-bottom: 1px solid var(--gz-chrome-dark);
+}
+
+.breadcrumb {
+  color: var(--gz-muted);
+}
+
+.breadcrumb li.active {
+  color: var(--gz-muted);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: var(--gz-muted);
+}
+
+/* -------------------------------------------------------------
+   Blocks / cards / statistics
+------------------------------------------------------------- */
+.block,
+.card,
+.statistic-block {
+  background: var(--gz-surface);
+  color: #4B5563;
+  border: 1px solid var(--gz-chrome-dark);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(31, 36, 48, 0.06);
+}
+
+.card-header,
+.card-footer {
+  background: var(--gz-surface);
+  border-color: var(--gz-chrome);
+}
+
+.block .title strong:first-child {
+  color: var(--gz-ink);
+}
+
+.statistic-block strong {
+  color: var(--gz-muted);
+}
+
+.statistic-block .icon {
+  color: var(--gz-violet);
+}
+
+.statistic-block .number {
+  color: var(--gz-violet);
+}
+
+.progress.progress-template {
+  background: var(--gz-chrome);
+}
+
+.footer .footer__block {
+  background: var(--gz-surface);
+}
+
+/* -------------------------------------------------------------
+   Tables
+------------------------------------------------------------- */
+.table {
+  color: var(--gz-ink);
+}
+
+.table thead th {
+  color: var(--gz-violet);
+  border-bottom: 2px solid var(--gz-chrome-dark);
+}
+
+.table td,
+.table th,
+.table-bordered td,
+.table-bordered th {
+  border-color: var(--gz-chrome-dark);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #F4F6FA;
+}
+
+.table-striped tbody tr:nth-of-type(odd):hover {
+  background-color: var(--gz-chrome);
+}
+
+.table-hover tbody tr:hover {
+  background-color: #F4F6FA;
+  color: var(--gz-ink);
+}
+
+/* -------------------------------------------------------------
+   Forms
+------------------------------------------------------------- */
+.form-control,
+.custom-select {
+  background-color: var(--gz-surface);
+  color: var(--gz-ink);
+  border-color: var(--gz-chrome-dark);
+}
+
+.form-control:focus,
+.custom-select:focus {
+  background-color: var(--gz-surface);
+  color: var(--gz-ink);
+  border-color: var(--gz-violet);
+  box-shadow: 0 0 0 0.2rem rgba(61, 0, 122, 0.15);
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background: var(--gz-chrome);
+}
+
+.form-control-label,
+form label {
+  color: #4B5563;
+}
+
+.form-control::-moz-placeholder {
+  color: #9AA3B2;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #9AA3B2;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #9AA3B2;
+}
+
+.form-control::placeholder {
+  color: #9AA3B2;
+}
+
+.input-group-text {
+  background: var(--gz-chrome);
+  border-color: var(--gz-chrome-dark);
+  color: var(--gz-ink);
+}
+
+/* -------------------------------------------------------------
+   Dropdowns / lists / pagination / nav pills
+------------------------------------------------------------- */
+.dropdown-menu {
+  background: var(--gz-surface);
+  color: var(--gz-ink);
+  border-color: var(--gz-chrome-dark);
+}
+
+.dropdown-menu a:hover,
+.dropdown-item:hover {
+  background: var(--gz-chrome);
+  color: var(--gz-violet);
+}
+
+.dropdown-item {
+  color: var(--gz-ink);
+}
+
+.list-group-item {
+  background: var(--gz-surface);
+  color: var(--gz-ink);
+  border-color: var(--gz-chrome);
+}
+
+.page-link {
+  color: var(--gz-violet);
+  background: var(--gz-surface);
+  border-color: var(--gz-chrome-dark);
+}
+
+.page-link:hover,
+.page-link:focus {
+  color: var(--gz-violet-dark);
+  background: var(--gz-chrome);
+}
+
+.page-item.active .page-link {
+  background: var(--gz-violet);
+  border-color: var(--gz-violet);
+  color: #FFFFFF;
+}
+
+.page-item.disabled .page-link {
+  color: #9AA3B2;
+  background: var(--gz-surface);
+  border-color: var(--gz-chrome);
+}
+
+.nav-tabs .nav-link,
+.nav-pills .nav-link {
+  color: var(--gz-muted);
+}
+
+.nav-tabs .nav-link.active,
+.nav-pills .nav-link.active {
+  color: var(--gz-violet);
+}
+
+/* -------------------------------------------------------------
+   Modals / alerts
+------------------------------------------------------------- */
+.modal-open .modal .modal-content {
+  background: var(--gz-surface);
+  color: var(--gz-ink);
+}
+
+.modal-open .modal .modal-title {
+  color: var(--gz-ink);
+}
+
+.alert-primary {
+  background: var(--gz-chrome);
+  border-color: var(--gz-violet-soft);
+  color: var(--gz-violet-dark);
+}
+
+/* -------------------------------------------------------------
+   Standalone login page
+------------------------------------------------------------- */
+.login-page {
+  background: var(--gz-chrome);
+  color: var(--gz-ink);
+}
+
+.login-page .form-holder .form {
+  background: var(--gz-surface);
+}
+
+.login-page .form-holder .info {
+  color: var(--gz-chrome);
+}
+
+/* -------------------------------------------------------------
+   Misc components
+------------------------------------------------------------- */
+code {
+  background: var(--gz-chrome);
+  color: var(--gz-violet);
+}
+
+.user-block .contributions,
+.public-user-block .contributions {
+  background: var(--gz-chrome);
+  color: var(--gz-ink);
+}
+
+.checklist-block .item:nth-of-type(even) {
+  background: #F4F6FA;
+}
+
+.checklist-block label {
+  border-color: var(--gz-chrome);
+  color: var(--gz-ink);
+}
+
+.messages-block a.message {
+  border-bottom: 1px solid var(--gz-chrome);
+}
+
+.messages-block a.message:hover {
+  background: var(--gz-chrome);
+}
+
+.stats-2-block .progress,
+.stats-3-block .progress {
+  background: var(--gz-chrome);
+}
+
+.nav-tabs .nav-link {
+  background: transparent;
+  border-color: var(--gz-chrome-dark);
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  background: var(--gz-surface);
+  border-color: var(--gz-chrome-dark) var(--gz-chrome-dark) var(--gz-surface);
+}
+
+.modal-open .modal .modal-header,
+.modal-open .modal .modal-footer {
+  border-color: var(--gz-chrome-dark);
+}
+
+#style-switch {
+  background: var(--gz-surface);
+  color: var(--gz-ink);
+}
+
+/* -------------------------------------------------------------
+   Style switcher (demo)
+------------------------------------------------------------- */
+#style-switch-button {
+  background: var(--gz-violet);
+  color: #FFFFFF;
+}
