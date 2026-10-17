@@ -151,7 +151,7 @@ nav.navbar .search-inner .submit {
    Sidebar
 ------------------------------------------------------------- */
 nav#sidebar {
-  background: var(--gz-violet-dark);
+  background: var(--gz-violet);
   color: #D8CFEA;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
