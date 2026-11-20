@@ -171,7 +171,10 @@
 
                         <td>${{ $total }}</td>
                         <td>
-                            <a href="{{ route('delete_cart_item', $item->id) }}" class="btn btn-danger btn-sm">Remove</a>
+                            <form action="{{ route('delete_cart_item', $item->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

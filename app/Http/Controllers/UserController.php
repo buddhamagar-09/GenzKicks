@@ -80,7 +80,7 @@ class UserController extends Controller
 
     public function removecart(string $id)
     {
-        cart::destroy($id);
+        cart::where('id', $id)->where('user_id', Auth::id())->delete();
         return redirect()->back();
     }
 
